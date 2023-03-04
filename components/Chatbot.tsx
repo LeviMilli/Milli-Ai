@@ -1,27 +1,35 @@
 import { useState, useContext, FormEvent } from "react";
 import { AppContext } from "../context/context";
-import 'bootstrap/dist/css/bootstrap.css'
+import "bootstrap/dist/css/bootstrap.css";
 
 interface ChatbotResponse {
   answer: string;
 }
 
 export default function Chatbot() {
-  const { user } = useContext(AppContext);
-
+  const { list, setList } = useContext(AppContext);
   const [data, setData] = useState<ChatbotResponse>({ answer: "" });
   const [text, setText] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!text) {
+      alert("Please enter text");
+      return;
+    }
+    setIsLoading(true);
     const response = await fetch("/api/chatbot", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
     });
-    const data = await response.json();
-    console.log(data);
-    setData(data);
+    const responseData = await response.json();
+    console.log(responseData);
+    setData(responseData);
+    setIsLoading(false);
+    setList((prevList) => [...prevList, { text, answer: responseData.answer, likes: 0, _id : responseData._id.toString() }]);
+    setText("");
   };
 
   return (
@@ -39,8 +47,13 @@ export default function Chatbot() {
                 onChange={(event) => setText(event.target.value)}
               />
             </div>
-            <button className="btn btn-primary" type="submit">
-              Submit
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={isLoading}
+              title={text ? "" : "Please enter text"}
+            >
+              {isLoading ? "Loading..." : "Submit"}
             </button>
           </form>
           <div className="my-4">

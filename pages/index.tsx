@@ -6,14 +6,18 @@ import Searchlist from '@/components/Searchlist'
 import Search from '@/models/Search'
 import { useState, useContext, useEffect } from 'react'
 import { AppContext } from "../context/context";
+import ImageGen from '@/components/ImageGen'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export async function getServerSideProps() {
   try {
     const data = await Search.find({}).lean();
+    console.log(data)
 
     const searchList = data.map(({ _id, text, answer, likes }) => ({
+      _id: _id.toString(),
       text,
       answer,
       likes
@@ -46,6 +50,8 @@ export default function Home({ searchList }) {
     <>
       <Navbar/>
       <Chatbot/>
+      
+      <ImageGen/>
       <Searchlist list={list} />
     </>
   )

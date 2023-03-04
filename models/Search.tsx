@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const searchSchema = new mongoose.Schema({
+const SearchSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
@@ -12,6 +12,7 @@ const searchSchema = new mongoose.Schema({
   likes: {
     type: Number,
     default: 0,
+
   },
   createdAt: {
     type: Date,
@@ -19,6 +20,8 @@ const searchSchema = new mongoose.Schema({
   },
 });
 
-const Search = mongoose.models.Search || mongoose.model('Search', searchSchema);
+
+const Search = mongoose.models.Search || mongoose.model('Search', SearchSchema, 'searches', { strict: false });
+
 
 export default Search;

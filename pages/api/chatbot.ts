@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { text } = req.body; // retrieve the text from the form data
+    const { text } = req.body;
     const options = {
       method: "POST",
       headers: {
@@ -14,21 +14,23 @@ export default async function handler(
         "X-RapidAPI-Key": "8784912ff7msh059048cc966813ap157d9fjsnfd45ffdcab31",
         "X-RapidAPI-Host": "you-chat-gpt.p.rapidapi.com",
       },
-      body: JSON.stringify({ question: text, max_response_time: 30 }), // include the text in the body
+      body: JSON.stringify({ question: text, max_response_time: 30 }),
     };
 
     try {
       const response = await fetch("https://you-chat-gpt.p.rapidapi.com/", options);
       const data = await response.json();
       res.status(200).json(data);
-      console.log(typeof data.answer)
+      
 
-      const result = new Search({
+      const search = new Search({
         text,
         answer: data.answer,
+        likes: 0,
       });
 
-      await result.save();
+      await search.save();
+      
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });

@@ -10,7 +10,21 @@ interface SearchlistProps {
   }[];
 }
 
+async function handleLikeButtonClick(id: string) {
+  console.log(id)
+  try {
+    const response = await fetch(`/api/search/${id}/like`, {
+      method: 'POST',
+    });
+    const data = await response.json();
+    console.log('Success:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
 function Searchlist({ list }: SearchlistProps) {
+  console.log(list)
   if (!Array.isArray(list)) {
     return <div>No data to display</div>
   }
@@ -24,11 +38,13 @@ function Searchlist({ list }: SearchlistProps) {
             <p className="mb-3">{item.text}</p>
             <h5 className="fw-bold text-success mb-2">AI answered:</h5>
             <p className="mb-0">{item.answer}</p>
+            <p> </p>
           </div>
           <div className="col-12">
             <div className="d-flex align-items-center">
               <span className="me-2">Likes:</span>
               <span className="badge bg-secondary">{item.likes}</span>
+              <button className="btn btn-primary ms-2" onClick={() => handleLikeButtonClick(item._id)}>Like</button>
             </div>
           </div>
         </div>
