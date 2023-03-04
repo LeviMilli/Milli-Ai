@@ -50,7 +50,6 @@ export default function Home({ searchList }) {
     <>
       <Navbar/>
       <Chatbot/>
-      
       <ImageGen/>
       <Searchlist list={list} />
     </>

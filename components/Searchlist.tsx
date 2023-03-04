@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import { AppContext } from "../context/context"
 
 interface SearchlistProps {
   list: {
@@ -10,21 +11,38 @@ interface SearchlistProps {
   }[];
 }
 
-async function handleLikeButtonClick(id: string) {
-  console.log(id)
-  try {
-    const response = await fetch(`/api/search/${id}/like`, {
-      method: 'POST',
-    });
-    const data = await response.json();
-    console.log('Success:', data);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
+
 
 function Searchlist({ list }: SearchlistProps) {
-  console.log(list)
+  const { setList } = useContext(AppContext);
+
+  async function handleLikeButtonClick(id: string) {
+    try {
+      const response = await fetch(`/api/chatbot`, {
+        method: 'PUT',
+        body: JSON.stringify({ id }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log('Success:', data);
+
+      // Find the item with the matching _id and update its likes property
+      const updatedList = list.map(item => {
+        console.log(item.likes)
+        if (item._id === id) {
+          return { ...item, likes: item.likes + 1 };
+        } else {
+          return item;
+        }
+      });
+      setList(updatedList);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   if (!Array.isArray(list)) {
     return <div>No data to display</div>
   }
