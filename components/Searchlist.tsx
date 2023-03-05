@@ -1,6 +1,6 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { AppContext } from "../context/context"
+import { AppContext } from '../context/context';
 
 interface SearchlistProps {
   list: {
@@ -11,26 +11,25 @@ interface SearchlistProps {
   }[];
 }
 
-
-
-function Searchlist({ list }: SearchlistProps) {
-  const { setList } = useContext(AppContext);
-
-  async function handleLikeButtonClick(id: string) {
+function Searchlist({ list }: SearchlistProps): JSX.Element {
+  const contextValue = useContext(AppContext);
+  const setList = contextValue?.setList;
+  
+  async function handleLikeButtonClick(id: string): Promise<void> {
     try {
       const response = await fetch(`/api/chatbot`, {
         method: 'PUT',
         body: JSON.stringify({ id }),
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
       const data = await response.json();
       console.log('Success:', data);
 
       // Find the item with the matching _id and update its likes property
-      const updatedList = list.map(item => {
-        console.log(item.likes)
+      const updatedList = list.map((item) => {
+        console.log(item.likes);
         if (item._id === id) {
           return { ...item, likes: item.likes + 1 };
         } else {
@@ -44,7 +43,7 @@ function Searchlist({ list }: SearchlistProps) {
   }
 
   if (!Array.isArray(list)) {
-    return <div>No data to display</div>
+    return <div>No data to display</div>;
   }
 
   return (
@@ -62,13 +61,16 @@ function Searchlist({ list }: SearchlistProps) {
             <div className="d-flex align-items-center">
               <span className="me-2">Likes:</span>
               <span className="badge bg-secondary">{item.likes}</span>
-              <button className="btn btn-primary ms-2" onClick={() => handleLikeButtonClick(item._id)}>Like</button>
+              <button className="btn btn-primary ms-2" onClick={() => handleLikeButtonClick(item._id)}>
+                Like
+              </button>
             </div>
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default Searchlist;
+
