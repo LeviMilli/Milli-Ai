@@ -55,7 +55,7 @@ const ImageGeneratorForm = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Generate Image
+          Generate you image
         </button>
         {isLoading && <p>Loading...</p>}
         {error && <p className="text-danger">{error}</p>}

@@ -31,6 +31,7 @@ export default function Chatbot() {
     setList((prevList) => [...prevList, { text, answer: responseData.answer, likes: 0, _id : responseData._id.toString() }]);
     setText("");
   };
+  
 
   return (
     <div className="container my-4">

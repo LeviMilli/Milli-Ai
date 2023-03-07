@@ -41,7 +41,7 @@ export default async function handler(
       res.status(500).json({ message: "Internal Server Error" });
     }
   } else {
-    res.status(405).json({ message: "POST WAS NOT USED FOR THIS QUERY" });
+    res.status(405).json({ message: "Post was not used for query" });
   }
 
 //UPDATE LIKES FOR AN ENTRY
