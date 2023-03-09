@@ -79,7 +79,7 @@ export default function Home({ searchList }: Props): JSX.Element {
       <Navbar />
       <Chatbot />
       <ImageGen />
-      <Searchlist list={appContext?.list || []} />
+      <Searchlist serverList={searchList} />
     </>
   );
 }

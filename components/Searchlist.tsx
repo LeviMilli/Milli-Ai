@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { AppContext } from '../context/context';
 
 interface SearchlistProps {
-  list: {
+  serverList: {
     _id: string;
     text: string;
     answer: string;
@@ -11,11 +11,13 @@ interface SearchlistProps {
   }[];
 }
 
-function Searchlist({ list }: SearchlistProps): JSX.Element {
-  const contextValue = useContext(AppContext);
-  const setList = contextValue?.setList;
+function Searchlist({ serverList }: SearchlistProps): JSX.Element {
   
+  const {setList, list} = useContext(AppContext)
+  setList(serverList)
+
   async function handleLikeButtonClick(id: string): Promise<void> {
+    console.log(id)
     try {
       const response = await fetch(`/api/chatbot`, {
         method: 'PUT',
@@ -26,22 +28,29 @@ function Searchlist({ list }: SearchlistProps): JSX.Element {
       });
       const data = await response.json();
       console.log('Success:', data);
-
+      
       // Find the item with the matching _id and update its likes property
-      const updatedList = list.map((item) => {
-        console.log(item.likes);
-        if (item._id === id) {
-          return { ...item, likes: item.likes + 1 };
-        } else {
-          return item;
-        }
-      });
-      setList(updatedList);
+const updatedList = list.map((item) => {
+  if (item._id === id) {
+    return {
+      ...item, // spread the properties of the item object
+      likes: item.likes + 1 // update the likes property
+    };
+  } else {
+    return item;
+  }
+});
+
+      
+        setList(["hey", "hey"]);
+      console.log(list)
+      
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
+  
   if (!Array.isArray(list)) {
     return <div>No data to display</div>;
   }

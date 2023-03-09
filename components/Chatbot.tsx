@@ -8,7 +8,7 @@ interface ChatbotResponse {
 
 export default function Chatbot() {
   const { list, setList } = useContext(AppContext);
-  const [data, setData] = useState<ChatbotResponse>({ answer: "" });
+  const [data, setData] = useState<ChatbotResponse>({ answer: ""});
   const [text, setText] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -28,10 +28,12 @@ export default function Chatbot() {
     console.log(responseData);
     setData(responseData);
     setIsLoading(false);
-    setList((prevList) => [...prevList, { text, answer: responseData.answer, likes: 0, _id : responseData._id.toString() }]);
+    setList((prevList) => [
+      ...prevList,
+      { text, answer: responseData.answer, likes: 0, _id: responseData._id },
+    ]);
     setText("");
   };
-  
 
   return (
     <div className="container my-4">

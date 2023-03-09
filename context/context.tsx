@@ -1,6 +1,7 @@
 import { createContext, useState, ReactNode } from "react";
 
 interface ListItem {
+  _id: string;
   text: string;
   answer: string;
   likes: number;
@@ -11,7 +12,10 @@ interface AppContextValue {
   setList: React.Dispatch<React.SetStateAction<ListItem[]>>;
 }
 
-export const AppContext = createContext<AppContextValue | undefined>(undefined);
+export const AppContext = createContext<AppContextValue>({
+  list: [],
+  setList: () => {}
+});
 
 interface AppContextWrapperProps {
   children: ReactNode;

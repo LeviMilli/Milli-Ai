@@ -47,7 +47,6 @@ export default async function handler(
 //UPDATE LIKES FOR AN ENTRY
 if (req.method === "PUT") {
   const { id } = req.body;
-  
   // Check if `id` field exists in request body
   if (!id) {
     return res.status(400).json({ message: "Missing id field in request body" });
