@@ -1,3 +1,56 @@
 .big {
   font-size: 50px;
 }
+body, html {
+  background-color: black !important;
+  color: white !important;
+  height: 100%;
+  width: 100%;
+}.input-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatbot-container,
+.imagegen-container {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.chatbot-container {
+  transform: translateX(0%);
+}
+
+.imagegen-container {
+  transform: translateX(100%);
+}
+
+.chatbot-container.animated {
+  transform: translateX(-100%);
+}
+
+.imagegen-container.animated {
+  transform: translateX(0%);
+}
+
+.button-group {
+  display: flex;
+}
+
+.button-group button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.button-group button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.component-container {
+  margin-top: 1rem;
+}

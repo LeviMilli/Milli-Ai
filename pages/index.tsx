@@ -7,6 +7,7 @@ import Search from '@/models/Search'
 import { useState, useContext, useEffect } from 'react'
 import { AppContext } from "../context/context";
 import ImageGen from '@/components/ImageGen'
+import InputForm from '@/components/InputForm'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -49,8 +50,7 @@ export default function Home({ searchList }) {
   return (
     <>
       <Navbar/>
-      <Chatbot/>
-      <ImageGen/>
+      <InputForm/>
       <Searchlist list={list} />
     </>
   )

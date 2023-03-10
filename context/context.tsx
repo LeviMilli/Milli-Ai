@@ -10,11 +10,15 @@ interface ListItem {
 interface AppContextValue {
   list: ListItem[];
   setList: React.Dispatch<React.SetStateAction<ListItem[]>>;
+  toggle: boolean,
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 export const AppContext = createContext<AppContextValue>({
   list: [],
-  setList: () => {}
+  setList: () => {},
+  toggle: true,
+  setToggle: () => {},
 });
 
 interface AppContextWrapperProps {
@@ -23,12 +27,15 @@ interface AppContextWrapperProps {
 
 export function AppContextWrapper({ children }: AppContextWrapperProps) {
   const [list, setList] = useState<ListItem[]>([]);
+  const [toggle, setToggle] = useState<boolean>(true);
 
   return (
     <AppContext.Provider
       value={{
         list,
         setList,
+        toggle,
+        setToggle
       }}
     >
       {children}
