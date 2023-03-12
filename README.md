@@ -5,7 +5,6 @@ Users can download, comment and like other peoples photos and text generations.
 
 
 
-
 ## How It's Made:
 
 **Tech used: Typescript, Next.js, MongoDB, Bootstrap, Node.js, CSS, HTML**
