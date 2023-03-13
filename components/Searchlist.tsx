@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { AppContext } from "../context/context"
 
 interface SearchlistProps {
-  serverList: {
+  list: {
     _id: string;
     text: string;
     answer: string;
