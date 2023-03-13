@@ -40,7 +40,15 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ searchList }) {
+type SearchItem = {
+  _id: string,
+  text: string,
+  answer: string,
+  likes: number
+}
+
+
+export default function Home({ searchList }: { searchList: SearchItem[] }) {
   const { list, setList } = useContext(AppContext)
 
   useEffect(() => {
@@ -50,7 +58,7 @@ export default function Home({ searchList }) {
   return (
     <>
       <Navbar/>
-      <InputForm/>
+      <Chatbot/>
       <Searchlist list={list} />
     </>
   )

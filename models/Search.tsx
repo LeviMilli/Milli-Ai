@@ -21,7 +21,7 @@ const SearchSchema = new mongoose.Schema({
 });
 
 
-const Search = mongoose.models.Search || mongoose.model('Search', SearchSchema, 'searches', { strict: false });
+const Search = mongoose.models.Search || mongoose.model('Search', SearchSchema, 'searches');
 
 
 export default Search;
