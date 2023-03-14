@@ -23,7 +23,7 @@ Next is an amazing tech that simplifies a lot of things, from server side render
 ## Other Amazing Repos
 Take a look at these couple repos that I have in my portfolio:
 
-**CryptoTRove:** https://github.com/LeviMilli/CryptoTrove
+**CryptoTrove:** https://github.com/LeviMilli/CryptoTrove
 
 **Foodmate Recipe Tracker:** https://github.com/LeviMilli/foodSnitch-server
 
