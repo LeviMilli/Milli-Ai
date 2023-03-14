@@ -53,9 +53,9 @@ function Searchlist({ list }: SearchlistProps) {
       {list.map((item) => (
         <div key={item._id} className="row mb-3">
           <div className="col-12">
-            <h5 className="fw-bold text-primary mb-2">You asked:</h5>
-            <p className="mb-3">{item.text}</p>
-            <h5 className="fw-bold text-success mb-2">AI answered:</h5>
+            <h5 className="fw-bold text-primary mb-2">What was asked:</h5>
+            <p className="mb-3 mainAsk">{item.text}</p>
+            <h5 className="fw-bold text-success mb-2 mainAi">AI answered:</h5>
             <p className="mb-0">{item.answer}</p>
             <p> </p>
           </div>

@@ -36,11 +36,21 @@ margin-bottom: 10px;
   background-color:#212529;
   color: white;
   align-items: center;
-  margin-top: 20vh;
+  margin-top: 15vh;
 
   
 }
 
 .footer p {
   padding: 0 !important;
+}
+
+.mainAsk {
+  font-size: 1.5rem;
+  color: gray;
+  font-style: italic;
+}
+
+.mainAi {
+  text-decoration: underline;
 }
