@@ -8,7 +8,7 @@ Users can download, comment and like other peoples photos and text generations.
 
 ## How It's Made:
 
-**Tech used: Typescript, Next.js, MongoDB, Bootstrap, Node.js, CSS, HTML**
+**Tech used: Typescript, Next.js, MongoDB, Material UI, Bootstrap, Node.js, CSS, HTML**
 
 Fullstack Next app with typescript. API integration for ai requests that are stored like a social media platform. The the ability for users to delete thier own posts and like other generations.
 
