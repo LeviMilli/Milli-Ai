@@ -8,6 +8,7 @@ import { useState, useContext, useEffect } from 'react'
 import { AppContext } from "../context/context";
 import ImageGen from '@/components/ImageGen'
 import InputForm from '@/components/InputForm'
+import Footer from '@/components/Footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -60,6 +61,7 @@ export default function Home({ searchList }: { searchList: SearchItem[] }) {
       <Navbar/>
       <Chatbot/>
       <Searchlist list={list} />
+      <Footer/>
     </>
   )
 }

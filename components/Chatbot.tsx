@@ -1,6 +1,8 @@
 import { useState, useContext, FormEvent } from "react";
 import { AppContext } from "../context/context";
 import "bootstrap/dist/css/bootstrap.css";
+import TextField from '@mui/material/TextField';
+
 
 interface ChatbotResponse {
   answer: string;
@@ -41,15 +43,11 @@ export default function Chatbot() {
         <div className="col-sm-8 col-md-6 col-lg-4">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="text">Your personal chat assist:</label>
-              <input
-                className="form-control"
-                id="text"
-                type="text"
-                value={text}
-                onChange={(event) => setText(event.target.value)}
-              />
+              <label htmlFor="text" className="chat">Your personal chat assist:</label>
+              <TextField id="outlined-basic" label="Ask Anything" variant="filled" value={text} onChange={(event) => setText(event.target.value)} />
+   
             </div>
+            
             <button
               className="btn btn-primary"
               type="submit"

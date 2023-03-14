@@ -26,11 +26,8 @@ function  handleLogOut(){
           </Nav>
           {user ? (     
           <Nav className='links'>
-            <Nav.Link style={{"color" : "#90EE90"}} href="/portfolio">Portfolio</Nav.Link>
-            <Nav.Link href="/sentiment">Market Sentiment</Nav.Link>
-            <Nav.Link href="/news">News</Nav.Link>
-            
-            <Nav.Link style={{"color" : "#FF5733"}} onClick={handleLogOut} href="/">Logout</Nav.Link>
+            <Nav.Link style={{"color" : "#90EE90"}} href="/">ChatBot</Nav.Link>
+
           </Nav>
             ) : (          
           <Nav>
