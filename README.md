@@ -3,7 +3,7 @@ Users can generate text and images that are stored on a database and displayed t
 
 Users can download, comment and like other peoples photos and text generations.
 
-
+**Link to project:** milli-ai.vercel.app
 
 
 ## How It's Made:
