@@ -7,8 +7,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-  
-
   // CHAT GENERATION AND INFO ALSO SENDS TO DATABASE
   if (req.method === "POST") {
     const { text } = req.body;
@@ -40,36 +38,29 @@ export default async function handler(
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });
     }
-  } else {
-    res.status(405).json({ message: "Post was not used for query" });
-  }
-
-//UPDATE LIKES FOR AN ENTRY
-if (req.method === "PUT") {
-  const { id } = req.body;
-  // Check if `id` field exists in request body
-  if (!id) {
-    return res.status(400).json({ message: "Missing id field in request body" });
-  }
-
-  try {
-    const search = await Search.findById(id);
-    
-    if (!search) {
-      return res.status(404).json({ message: "Search not found" });
+  } else if (req.method === "PUT") {
+    const { id } = req.body;
+    // Check if `id` field exists in request body
+    if (!id) {
+      return res.status(400).json({ message: "Missing id field in request body" });
     }
-    
-    search.likes += 1;
-    await search.save();
-    
-    res.status(200).json(search);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+
+    try {
+      const search = await Search.findOne({_id: id}).maxTimeMS(10000);
+      
+      if (!search) {
+        return res.status(404).json({ message: "Search not found" });
+      }
+      
+      search.likes += 1;
+      await search.save();
+      
+      res.status(200).json(search);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  } else {
+    res.status(405).json({ message: "Invalid method" });
   }
-} else {
-  res.status(405).json({ message: "PUT WAS NOT USED FOR THIS QUERY" });
 }
-
-}
-

@@ -9,7 +9,7 @@ export default async function handler(
     const { text } = req.body;
     const encodedParams = new URLSearchParams();
     encodedParams.append("prompt", text);
-    encodedParams.append("guidance", "7");
+    encodedParams.append("guidance", "8");
     encodedParams.append("steps", "30");
     encodedParams.append("sampler", "euler_a");
     encodedParams.append("upscale", "1");
@@ -32,11 +32,6 @@ export default async function handler(
       res.status(200).json(data);
      
 
-      // const result = new ImageGen({
-      //   text,
-      //   answer: data.answer,
-      // });
-      // await result.save();
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });
